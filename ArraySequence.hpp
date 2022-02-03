@@ -25,7 +25,7 @@ public:
     ArraySequence<T> map(T (*f)(T));
     T reduce(T (*f)(T,T), T init);
     const T& operator[] (const int index) const;
-    ArraySequence<bool> & where(bool (*f)(T));
+    void where(Sequence<bool> &,bool (*f)(T));
 
 private:
     DynamicArray<T> mass;
@@ -61,6 +61,7 @@ ArraySequence<T>::ArraySequence(): mass(){
 
 template<class T>
 ArraySequence<T>::ArraySequence(const ArraySequence <T> & list) : mass(list.mass) {}
+
 
 template<class T>
 T ArraySequence<T>::GetFirst() const {
@@ -150,12 +151,10 @@ const T& ArraySequence<T>::operator[] (const int index) const{
 }
 
 template<typename T>
-ArraySequence<bool> & ArraySequence<T>::where(bool (*f)(T)){
-    ArraySequence<bool> ans;
+void ArraySequence<T>::where(Sequence<bool> & newobj,bool (*f)(T)){
     for(int i = 0; i < GetLenght(); i++){
-        ans.Append(F(Get(i)));
+        newobj.Set(i , f(Get(i)));
     }
-    return ans;
 }
 
 #endif

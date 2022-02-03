@@ -30,7 +30,7 @@ public:
     }
 
     Tv find(Tk key){
-        Node<Tv, Tk> * res = foundNode(key);
+        Node<Tv, Tk> * res = findNode(key);
         if(res != nullptr){
             return res->value;
         }else {
@@ -39,7 +39,7 @@ public:
     }
 
     void addNode(Tk key, Tv value){
-        Node<Tv,Tk> * ptr = foundNode(key);
+        Node<Tv,Tk> * ptr = findNode(key);
         if(ptr){
             ptr->value = value;
         } else {
@@ -48,7 +48,7 @@ public:
     }
 
     void deleteNode(Tk key){
-        Node<Tv,Tk> * ptr = foundNode(key);
+        Node<Tv,Tk> * ptr = findNode(key);
         if(ptr){
             deleteNoderev(ptr);
         } else {
@@ -212,7 +212,7 @@ public:
 
     Tree<Tv,Tk> * subTree(int key){
         Tree<Tv,Tk> newtree = new Tree();
-        Node<Tv,Tk> * ptr = foundNode(key);
+        Node<Tv,Tk> * ptr = findNode(key);
         if(!ptr){
             throw "subTree not founded";
         }

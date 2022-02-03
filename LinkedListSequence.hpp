@@ -24,7 +24,7 @@ public:
     T reduce(T (*f)(T,T), T init);
     LinkedListSequence<T> map(T (*f)(T));
     const T& operator[] (const int index) const;
-    LinkedListSequence<bool> & where(bool (*f)(T));
+    void where(Sequence<bool> &, bool (*f)(T));
 
 private:
     LinkedList<T>  mass;
@@ -111,12 +111,10 @@ const T& LinkedListSequence<T>::operator[] (const int index) const {
 }
 
 template<typename T>
-LinkedListSequence<bool> & LinkedListSequence<T>::where(bool (*f)(T)){
-    LinkedListSequence<bool> ans;
+void LinkedListSequence<T>::where(Sequence<bool> & newobj, bool (*f)(T)){
     for(int i = 0; i < GetLenght(); i++){
-        ans.Append(F(Get(i)));
+        newobj.Set(i,F(Get(i)));
     }
-    return ans;
 }
 
 

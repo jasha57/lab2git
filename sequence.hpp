@@ -16,7 +16,7 @@ public:
     virtual Sequence<T> * Concat(Sequence <T> *) = 0;
     virtual T reduce(T (*f)(T,T), T init) = 0;
     virtual const T& operator[] (const int index) const = 0;
-    virtual Sequence<bool> & where(bool (*f)(T)) = 0;
+    virtual void where(Sequence<bool> &, bool (*f)(T)) = 0;
 };
 
 #endif

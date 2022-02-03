@@ -11,6 +11,10 @@ class Person{
         age = _age;
         height = _height;
     }
+    Person(const Person & p){
+        age = p.age;
+        height = p.height;
+    }
     int GetAge(){
         return age;
     }
